@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainPage from '../pages/mainPage/MainPage.jsx'
-import Shop from '../pages/shop/Shop.jsx'
+import Shop, { loader as shopLoader } from '../pages/shop/Shop.jsx'
 import ErrorPage from '../pages/error/ErrorPage.jsx'
 import CategoryPage from '../pages/category/CategoryPage.jsx'
 
@@ -18,6 +18,7 @@ export default function Route() {
             {
               path: '/shop/:category',
               element: <CategoryPage />,
+              loader: shopLoader,
             },
           ],
         },
