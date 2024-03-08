@@ -1,11 +1,11 @@
 import { Link, Outlet, Navigate } from 'react-router-dom'
+import NavBar from '../components/NavBar.jsx'
 
 export default function MainPage() {
   
   return (
     <div>
-      <h1>Hello from Home Page</h1>
-      <Link to='/'>Goto Shop</Link>
+      <NavBar />
       <Navigate to='shop'></Navigate>
       <Outlet />
     </div>

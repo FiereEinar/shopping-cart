@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const BASE_URL = 'https://fakestoreapi.com'
+
 const storeData = {
   shopItems: null,
   shopCategories: null,
@@ -7,7 +9,7 @@ const storeData = {
   getShopItems: function () {
     const fetchData = async () => {
       if (storeData.shopItems === null) {
-        const res = await axios.get(`https://fakestoreapi.com/products`);
+        const res = await axios.get(`${BASE_URL}/products`);
         storeData.shopItems = res.data;
         return res.data;
       } else {
@@ -20,7 +22,7 @@ const storeData = {
   getShopCategories: function () {
     const fetchData = async () => {
       if (storeData.shopCategories === null) {
-        const res = await axios.get(`https://fakestoreapi.com/products/categories`);
+        const res = await axios.get(`${BASE_URL}/products/categories`);
         storeData.shopCategories = res.data;
         return res.data;
       } else {

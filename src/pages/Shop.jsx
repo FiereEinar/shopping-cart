@@ -1,6 +1,7 @@
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import storeData from '../../api/api.js'
+import ComboBox from '../components/ComboBox.jsx'
+import storeData from '../api/api.js'
 import axios from 'axios'
 
 export const loader = async () => {
@@ -46,17 +47,8 @@ export default function Shop() {
         <p>An error occured while fetching the data. {error}</p>
       ) : (
         <>
-          <nav className='w-screen grid place-items-center'>
-            <ul className='flex gap-3'>
-              {shoppingCategories.map((categories, i) => (
-                <NavLink
-                className={({ isActive, isPending }) => isActive ? 'text-blue-500' : isPending ? 'text-gray-500' : ''}
-                to={categories} 
-                key={i}>
-                  {categories}
-                </NavLink>
-              ))}
-            </ul>
+          <nav className='w-screen flex p-5'>
+            <ComboBox categories={shoppingCategories} />
           </nav>
           <Outlet />
         </>

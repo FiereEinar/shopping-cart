@@ -3,7 +3,10 @@ import { useParams, useLoaderData } from 'react-router-dom'
 export default function CategoryPage() {
   const { category } = useParams()
   const { shopItems } = useLoaderData()
-  const itemsList = shopItems.filter((item) => item.category === category)
+  let itemsList = shopItems
+  if (category !== 'all items') {
+    itemsList = shopItems.filter((item) => item.category === category)
+  }
 
   return (
     <div>

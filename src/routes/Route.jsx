@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MainPage from '../pages/mainPage/MainPage.jsx'
-import Shop, { loader as shopLoader } from '../pages/shop/Shop.jsx'
-import ErrorPage from '../pages/error/ErrorPage.jsx'
-import CategoryPage from '../pages/category/CategoryPage.jsx'
+import MainPage from '../pages/MainPage.jsx'
+import Shop, { loader as shopLoader } from '../pages/Shop.jsx'
+import ErrorPage from '../pages/ErrorPage.jsx'
+import CategoryPage from '../pages/CategoryPage.jsx'
 
 export default function Route() {
   const route = createBrowserRouter([
