@@ -23,12 +23,6 @@ export default function ComboBox({ categories }) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
   const navigate = useNavigate()
-  
-  React.useEffect(() => {
-    if (categories[0] !== 'all items') {
-      categories.unshift('all items')
-    }
-  }, [])
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
