@@ -1,12 +1,15 @@
-import { Link, Outlet } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { Outlet, useParams } from 'react-router-dom'
 import ComboBox from '../components/ComboBox.jsx'
+import NavBar from '../components/NavBar.jsx'
+import DefaultPage from './DefaultPage.jsx'
 import storeData from '../api/api.js'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 export const loader = async () => {
   const shopItems = await storeData.getShopItems()
-  return { shopItems }
+  const shopCategories = await storeData.getShopCategories()
+  
+  return { shopItems, shopCategories }
 }
 
 const useFetchData = () => {
@@ -23,7 +26,6 @@ const useFetchData = () => {
         
         setShoppingItems(shopItems)
         setShoppingCategories(shopCategories)
-        console.log(shopItems)
       } catch (err) {
         setError(err.message)
       } finally {
@@ -38,20 +40,26 @@ const useFetchData = () => {
 
 export default function Shop() {
   const [ shoppingItems, shoppingCategories, isLoading, error ] = useFetchData()
+  const { category } = useParams()
   
   return (
     <div>
       {isLoading ? (
-        <p className='text-6xl'>Loading items...</p>
-      ) : error ? (
-        <p>An error occured while fetching the data. {error}</p>
+        <h1>Loading...</h1>
       ) : (
-        <>
+        <div>
+          <NavBar 
+            shoppingItems={shoppingItems} 
+          />
           <nav className='w-screen flex p-5'>
             <ComboBox categories={shoppingCategories} />
           </nav>
-          <Outlet />
-        </>
+          {category === undefined ? (
+            <DefaultPage shopItems={shoppingItems} />
+          ) : (
+            <Outlet />
+          )}
+        </div>
       )}
     </div>
   )

@@ -1,13 +1,9 @@
-import { useLoaderData } from 'react-router-dom'
 import ItemCard from '../components/ItemCard.jsx'
+import ProductSection from '../components/ProductSection.jsx'
 
-export default function DefaultPage() {
-  const { shopItems } = useLoaderData()
-  
-  
+export default function DefaultPage({ shopItems }) {
   return (
-    <div className='grid grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] gap-3 gap-y-5
-    p-2'>
+    <ProductSection>
       {shopItems.map((item) => (
         <ItemCard
         key={item.id}
@@ -18,6 +14,6 @@ export default function DefaultPage() {
         rating={item.rating.rate}
         />
       ))}
-    </div>
+    </ProductSection>
   )
 }  

@@ -1,13 +1,5 @@
-import { Link, Outlet, Navigate } from 'react-router-dom'
-import NavBar from '../components/NavBar.jsx'
+import { Navigate } from 'react-router-dom'
 
 export default function MainPage() {
-  
-  return (
-    <div>
-      <NavBar />
-      <Navigate to='shop'></Navigate>
-      <Outlet />
-    </div>
-  )
+  return <Navigate to='shop'></Navigate>
 }
