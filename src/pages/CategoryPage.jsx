@@ -8,8 +8,8 @@ export default function CategoryPage() {
   const itemsList = shopItems.filter((item) => item.category === category)
 
   return (
-    <div>
-      <h1>{category}</h1>
+    <div className='p-2'>
+      <h1 className='text-2xl pl-2 py-1'>{category}</h1>
       <ProductSection>
         {itemsList.map((item) => (
           <ItemCard 

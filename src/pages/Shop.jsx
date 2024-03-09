@@ -2,6 +2,7 @@ import { Outlet, useParams } from 'react-router-dom'
 import ComboBox from '../components/ComboBox.jsx'
 import NavBar from '../components/NavBar.jsx'
 import DefaultPage from './DefaultPage.jsx'
+import LoadingPage from '../pages/LoadingPage.jsx'
 import storeData from '../api/api.js'
 import { useState, useEffect } from 'react'
 
@@ -45,13 +46,13 @@ export default function Shop() {
   return (
     <div>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <LoadingPage />
       ) : (
-        <div>
+        <div className='flex flex-col gap-2 p-2'>
           <NavBar 
             shoppingItems={shoppingItems} 
           />
-          <nav className='w-screen flex p-5'>
+          <nav className='w-screen flex p-2'>
             <ComboBox categories={shoppingCategories} />
           </nav>
           {category === undefined ? (
