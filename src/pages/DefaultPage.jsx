@@ -9,8 +9,14 @@ export default function DefaultPage({ shopItems }) {
   
   useEffect(() => {
     const items = []
-    for (let i = 0; i < 6; i++) {
-      items.push(shopItems[Math.floor(Math.random() * shopItems.length)])
+    const taken = []
+    
+    while (items.length !== 6) {
+      const index = Math.floor(Math.random() * shopItems.length)
+      if (!taken.includes(index)) {
+        items.push(shopItems[index])
+        taken.push(index)
+      }
     }
     setRecommendedItems([...items])
   }, [])

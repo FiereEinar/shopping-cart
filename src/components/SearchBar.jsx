@@ -8,7 +8,7 @@ export default function SearchBar({ items }) {
     let filtered = []
     items.map((item) => {
       if (item.title.toLowerCase().includes(e.target.value.toLowerCase()))
-        filtered.push(item.title)
+        filtered.push(item)
     })
     setResults(filtered)
     setSearchInput(e.target.value)
@@ -36,17 +36,20 @@ export default function SearchBar({ items }) {
         }
       </div>
       {results.length !== 0 && 
-        <div className='absolute max-h-80 bg-white overflow-auto rounded border shadow-2xl p-1'>
+        <div className='absolute max-h-80 bg-white overflow-auto rounded border shadow-2xl 
+        p-1'>
           {results.map((item) => (
             <button
+            key={item.title}
             className='rounded p-1 w-full  focus:outline-slate-500
-            hover:bg-gray-200 transition-all'
+            hover:bg-gray-200 transition-all flex justify-start gap-2'
             onClick={() => {
               clearText()
-              setSearchInput(item)
-            }}
-            key={item}>
-              {item}
+              setSearchInput(item.title)
+            }}>
+              <img src={item.image}
+              className='h-[50px] min-w-[50px]' />
+              <p className=' text-start'>{item.title}</p>
             </button>
           ))}
         </div>
