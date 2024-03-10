@@ -3,6 +3,7 @@ import MainPage from '../pages/MainPage.jsx'
 import Shop, { loader as shopLoader } from '../pages/Shop.jsx'
 import ErrorPage from '../pages/ErrorPage.jsx'
 import CategoryPage from '../pages/CategoryPage.jsx'
+import ItemPage from '../pages/ItemPage.jsx'
 
 export default function Route() {
   const route = createBrowserRouter([
@@ -22,6 +23,12 @@ export default function Route() {
           loader: shopLoader,
         },
       ],
+    },
+    {
+      path: '/item/:itemId',
+      element: <ItemPage />,
+      loader: shopLoader,
+      errorElement: <ErrorPage />,
     },
   ])
   

@@ -15,6 +15,7 @@ export default function CategoryPage() {
         {itemsList.map((item) => (
           <ItemCard 
           key={item.id}
+          id={item.id}
           imgURL={item.image} 
           title={item.title} 
           price={item.price} 

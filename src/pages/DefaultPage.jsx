@@ -28,6 +28,7 @@ export default function DefaultPage({ shopItems }) {
           {bestSelling.map((item) => (
             <ItemCard
             key={item.id}
+            id={item.id}
             imgURL={item.image} 
             title={item.title} 
             price={item.price} 
@@ -42,6 +43,7 @@ export default function DefaultPage({ shopItems }) {
           {recommendedItems.map((item, i) => (
             <ItemCard
             key={i}
+            id={item.id}
             imgURL={item.image} 
             title={item.title} 
             price={item.price} 

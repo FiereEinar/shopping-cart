@@ -1,8 +1,17 @@
-export default function ItemCard({ imgURL, title, price, sold, rating }) {
+
+
+import { useNavigate } from 'react-router-dom'
+
+export default function ItemCard({ id, imgURL, title, price, sold, rating }) {
+  const navigate = useNavigate()
+  
   return (
     <button 
     className='w-full border rounded-2xl overflow-hidden flex flex-col
-    hover:shadow hover:border-zinc-500 transition-all'>
+    hover:shadow hover:border-zinc-500 transition-all'
+    onClick={() => {
+      navigate(`/item/${id}`)
+    }}>
       <img 
       className='w-full h-44 md:h-56'
       src={imgURL} />

@@ -5,7 +5,7 @@ export default function LoadingPage() {
   
   return (
     <div className='flex flex-col gap-2'>
-      <nav className='flex justify-between items-center p-2'>
+      <nav className='flex justify-between items-center p-2 mt-5'>
         <Skeleton className="bg-gray-300 h-8 w-[100px]" />
         <Skeleton className="bg-gray-300 h-8 w-[200px]" />
       </nav>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SearchBar({ items }) {
   const [results, setResults] = useState([])
   const [searchInput, setSearchInput] = useState('')
+  const navigate = useNavigate()
   
   const handleSearch = (e) => {
     let filtered = []
@@ -46,6 +48,7 @@ export default function SearchBar({ items }) {
             onClick={() => {
               clearText()
               setSearchInput(item.title)
+              navigate(`/item/${item.id}`)
             }}>
               <img src={item.image}
               className='h-[50px] min-w-[50px]' />
