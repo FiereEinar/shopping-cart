@@ -1,6 +1,8 @@
 import { useParams, useLoaderData } from 'react-router-dom'
 import ItemCard from '../components/ItemCard.jsx'
 import ProductSection from '../components/ProductSection.jsx'
+import CategorySection from '../components/CategorySection.jsx'
+import { capitalize } from '../lib/utils.js'
 
 export default function CategoryPage() {
   const { category } = useParams()
@@ -8,8 +10,7 @@ export default function CategoryPage() {
   const itemsList = shopItems.filter((item) => item.category === category)
 
   return (
-    <div className='p-2'>
-      <h1 className='text-2xl pl-2 py-1'>{category}</h1>
+    <CategorySection heading={capitalize(category)}>
       <ProductSection>
         {itemsList.map((item) => (
           <ItemCard 
@@ -23,6 +24,6 @@ export default function CategoryPage() {
           </ItemCard>
         ))}
       </ProductSection>
-    </div>
+    </CategorySection>
   )
 }

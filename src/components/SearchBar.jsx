@@ -19,7 +19,7 @@ export default function SearchBar({ items }) {
     setSearchInput('')
     setResults([])
   }
-  
+  // TODO: add images to the search results
   return (
     <div className='relative w-fit rounded'>
       <div className='h-8 rounded relative border w-fit flex items-center justify-between'>

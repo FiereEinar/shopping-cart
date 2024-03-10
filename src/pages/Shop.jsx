@@ -44,7 +44,7 @@ export default function Shop() {
   const { category } = useParams()
   
   return (
-    <div>
+    <div className=''>
       {isLoading ? (
         <LoadingPage />
       ) : (
@@ -52,8 +52,8 @@ export default function Shop() {
           <NavBar 
             shoppingItems={shoppingItems} 
           />
-          <nav className='w-screen flex p-2'>
-            <ComboBox categories={shoppingCategories} />
+          <nav className='w-screen flex p-2 dark:text-white'>
+            <ComboBox categories={shoppingCategories} categoryValue={category} />
           </nav>
           {category === undefined ? (
             <DefaultPage shopItems={shoppingItems} />

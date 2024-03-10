@@ -19,9 +19,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-export default function ComboBox({ categories }) {
+export default function ComboBox({ categories, categoryValue }) {
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = React.useState('')
   const navigate = useNavigate()
 
   return (
@@ -33,7 +33,7 @@ export default function ComboBox({ categories }) {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
+          {categoryValue
             ? categories.find((category) => category === value)
             : 'Select a category...'}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
