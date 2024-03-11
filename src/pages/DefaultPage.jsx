@@ -22,7 +22,7 @@ export default function DefaultPage({ shopItems }) {
   }, [])
   
   return (
-    <section>
+    <section className='flex flex-col gap-2'>
       <CategorySection heading={'Best Selling'}>
         <ProductSection>
           {bestSelling.map((item) => (

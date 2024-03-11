@@ -21,10 +21,10 @@ export default function SearchBar({ items }) {
     setSearchInput('')
     setResults([])
   }
-  // TODO: add images to the search results
+
   return (
     <div className='relative w-fit rounded'>
-      <div className='h-8 rounded relative border w-fit flex items-center justify-between'>
+      <div className='h-8 rounded relative border w-fit flex items-center justify-between overflow-hidden'>
         <svg className='absolute left-2 h-5 w-5' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="search"><g data-name="Layer 2"><path d="m20.71 19.29-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z" data-name="search"></path></g></svg>
         <input
           className='w-full h-full p-1 ps-8 pe-8 truncate focus:outline-slate-500'

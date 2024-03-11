@@ -48,11 +48,11 @@ export default function Shop() {
       {isLoading ? (
         <LoadingPage />
       ) : (
-        <div className='flex flex-col gap-2 p-2'>
+        <div className='flex flex-col gap-2 p-2 bg-gray-100'>
           <NavBar 
             shoppingItems={shoppingItems} 
           />
-          <nav className='w-screen flex p-2 dark:text-white'>
+          <nav className='w-screen flex dark:text-white'>
             <ComboBox categories={shoppingCategories} categoryValue={category} />
           </nav>
           {category === undefined ? (
