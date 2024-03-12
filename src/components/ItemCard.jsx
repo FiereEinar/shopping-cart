@@ -1,5 +1,3 @@
-
-
 import { useNavigate } from 'react-router-dom'
 
 export default function ItemCard({ id, imgURL, title, price, sold, rating }) {

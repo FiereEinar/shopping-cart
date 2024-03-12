@@ -13,7 +13,7 @@ export const loader = async () => {
   return { shopItems, shopCategories }
 }
 
-const useFetchData = () => {
+export const useFetchData = () => {
   const [shoppingItems, setShoppingItems] = useState(null)
   const [shoppingCategories, setShoppingCategories] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -49,12 +49,10 @@ export default function Shop() {
         <LoadingPage />
       ) : (
         <div className='flex flex-col gap-2 p-2 bg-gray-100'>
-          <NavBar 
-            shoppingItems={shoppingItems} 
-          />
-          <nav className='w-screen flex dark:text-white'>
+          <NavBar shoppingItems={shoppingItems} />
+          <div className='w-screen flex dark:text-white'>
             <ComboBox categories={shoppingCategories} categoryValue={category} />
-          </nav>
+          </div>
           {category === undefined ? (
             <DefaultPage shopItems={shoppingItems} />
           ) : (

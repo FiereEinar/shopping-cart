@@ -7,6 +7,7 @@ import { useState } from 'react'
 export default function AddToCartDialog({ item, openToggler }) {
   const sizes = ['small', 'medium', 'large']
   const [quantity, setQuantity] = useState(1)
+  const totalPrice = item.price * quantity
   
   const addToCartHandler = (e) => {
     e.preventDefault()
@@ -24,17 +25,17 @@ export default function AddToCartDialog({ item, openToggler }) {
   return (
     <div className='absolute w-screen h-full flex justify-center 
     pt-36 backdrop-blur-sm'>
-      <form className='bg-white w-80 md:w-fit h-fit p-2 md:p-5 rounded shadow-2xl flex flex-col gap-2 md:gap-5'>
-        <div className='flex gap-2 md:gap-5 border rounded p-2'>
-          <img className='w-full max-w-48 md:max-w-60 h-32 md:h-60' src={item.image} />
+      <form className='bg-gray-100 w-80 md:w-fit h-fit p-2 md:p-5 rounded shadow-2xl flex flex-col gap-2 md:gap-5'>
+        <div className='bg-white flex gap-2 md:gap-5 border rounded p-2'>
+          <img className='w-full max-w-48 md:max-w-60 h-[11rem] md:h-60' src={item.image} />
           <div className='flex flex-col gap-2'>
             <p>{item.title}</p>
             <p className='text-orange-400'>${item.price}</p>
           </div>
         </div>
-        <fieldset id='size' className='border rounded p-2'>
+        <fieldset id='size' className='border rounded p-2 bg-white'>
           <h4 className='pl-1 mb-2'>Sizes:</h4>
-          <div className='flex gap-2'>
+          <div className='flex gap-2 justify-between px-2'>
             {sizes.map((size) => (
               <RadioElement
                 key={size}
@@ -48,20 +49,25 @@ export default function AddToCartDialog({ item, openToggler }) {
         </fieldset>
         <div className='flex justify-end rounded'>
           <h4 className='mr-auto flex justify-center items-center px-4'>Quantity:</h4>
-          <button className='border w-8 h-8' 
+          <button className='border w-8 h-8 rounded-l bg-white' 
           onClick={(e) => {
             e.preventDefault()
+            if (quantity === 1) return
             setQuantity(quantity - 1)
           }}>-</button>
           <input type="number" 
           className='w-12 border pl-2 focus:outline-slate-500'
           onChange={(e) => setQuantity(+e.target.value)}
           value={quantity}/>
-          <button className='border w-8 h-8'
+          <button className='border w-8 h-8 rounded-r bg-white'
           onClick={(e) => {
             e.preventDefault()
             setQuantity(quantity + 1)
           }}>+</button>
+        </div>
+        <div className='flex justify-between p-2'>
+          <h4 className='px-2'>Total Price:</h4>
+          <h4>${totalPrice}</h4>
         </div>
         <div className='flex gap-2 justify-end'>
           <Button onClick={openToggler} size='sm' variant='destructive'>Cancel</Button>

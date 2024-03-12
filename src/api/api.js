@@ -48,7 +48,7 @@ const storeData = {
   },
   
   removeToCart: function(id) {
-    storeData.cart = storeData.cart.filter((x) => x.id === id)
+    storeData.cart = storeData.cart.filter((x) => x.item.id === id)
   },
   
   getCartItems: function() {

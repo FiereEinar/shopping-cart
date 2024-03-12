@@ -5,7 +5,7 @@ import ItemCard from '../components/ItemCard.jsx'
 import ProductSection from '../components/ProductSection.jsx'
 import CategorySection from '../components/CategorySection.jsx'
 import AddToCartDialog from '../components/AddToCartDialog.jsx'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function ItemPage() {
   const [cartOpen, setCartOpen] = useState(false)
@@ -20,9 +20,14 @@ export default function ItemPage() {
   const toggleCartOpen = () => {
     setCartOpen(!cartOpen)
   }
+  
+  useEffect(() => {
+    const topElement = document.querySelector('#nav')
+    topElement.scrollIntoView()
+  }, [itemId])
 
   return (
-    <div className='relative flex flex-col gap-2 p-2 bg-gray-100'>
+    <div className='relative flex flex-col gap-2 p-2 bg-gray-100 scroll-smooth'>
       <NavBar shoppingItems={shopItems} />
       {cartOpen &&
         <AddToCartDialog 
@@ -32,7 +37,7 @@ export default function ItemPage() {
       }
       {item ? (
         <>
-          <section className='flex border rounded-2xl overflow-hidden p-3
+          <section id='selectedItem' className='flex border rounded-2xl overflow-hidden p-3
           gap-2 bg-white'>
             <img src={item.image} 
             className='min-w-36 h-36 md:min-w-72 md:h-72'/>

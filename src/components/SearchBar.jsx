@@ -39,7 +39,7 @@ export default function SearchBar({ items }) {
       </div>
       {results.length !== 0 && 
         <div className='absolute max-h-80 bg-white overflow-auto rounded border shadow-2xl 
-        p-1'>
+        p-1 z-10'>
           {results.map((item) => (
             <button
             key={item.title}
