@@ -1,15 +1,37 @@
 import storeData from '../api/api.js'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/ui/button.jsx'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function CartPage() {
-  const cartItems = storeData.getCartItems()
-  let totalPrice = 0
+  const [cartItems, setCartItems] = useState(storeData.getCartItems())
+  const [selectAll, setSelectAll] = useState(false)
   
-  cartItems.forEach((cart) => {
-    totalPrice += cart.quantity * cart.item.price
-  })
+  const totalPrice = cartItems.reduce((total, cart) => {
+    if (selectAll || cart.selected) {
+      return total + cart.quantity * cart.item.price;
+    }
+    return total;
+  }, 0);
+  
+  const handleCheckoutChange = (id) => {
+    setCartItems((prevCartItems) => 
+      prevCartItems.map((cart) => 
+        cart.id === id ? { ...cart, selected: !cart.selected } : cart
+      )
+    )
+  }
+  
+  const toggleSelectAll = () => {
+    setSelectAll((prev) => !prev)
+  }
+  
+  const handleDelete = (id) => {
+    setCartItems((prevCartItems) =>
+      prevCartItems.filter((cart) => cart.id !== id)
+    )
+    storeData.removeToCart(id)
+  }
   
   return (
     <div className='border flex flex-col gap-2 p-2 min-h-screen bg-gray-100'>
@@ -17,13 +39,18 @@ export default function CartPage() {
         <Link to='/shop'>{'<'} Go back</Link>
       </div>
       <div className='border p-2 bg-white flex items-center gap-2'>
-        <input id='selectAll' type='checkbox' className='' />
+        <input 
+          id='selectAll' 
+          type='checkbox' 
+          checked={selectAll} 
+          onChange={toggleSelectAll}
+        />
         <label htmlFor='selectAll'>Select All</label>
       </div>
       <section className='flex flex-col gap-2'>
         {cartItems.length !== 0 ? (
-          cartItems.map((cart, i) => (
-            <div key={i}
+          cartItems.map((cart) => (
+            <div key={cart.id}
             className='border p-2 bg-white flex rounded overflow-hidden gap-2'>
               <img src={cart.item.image}
               className='min-w-36 h-36 md:min-w-72 md:h-72' />
@@ -33,12 +60,23 @@ export default function CartPage() {
                 <p>Quantity: {cart.quantity}</p>
                 <p className='text-orange-400'>${cart.item.price}</p>
                 <div className='flex gap-2 justify-end'>
-                  <Button size='sm' variant='destructive'>Delete</Button>
-                  <Button size='sm' variant='outline'>Edit</Button>
+                  <Button 
+                    onClick={() => handleDelete(cart.id)} 
+                    size='sm' 
+                    variant='destructive'
+                  >
+                    Delete
+                  </Button>
+                  
                 </div>
                 <div className='flex gap-2 justify-end p-2'>
-                  <label htmlFor={i}>Checkout</label>
-                  <input id={i} type='checkbox' className='' />
+                  <label htmlFor={cart.id}>Checkout</label>
+                  <input 
+                    id={cart.id} 
+                    type='checkbox'
+                    checked={cart.selected || selectAll}
+                    onChange={() => handleCheckoutChange(cart.id)}
+                  />
                 </div>
               </div>
             </div>
@@ -49,9 +87,20 @@ export default function CartPage() {
         <section className='border bg-white flex justify-end items-center gap-3
         p-2 py-5 rounded'>
           <p>Total: <span className='text-orange-400'>${totalPrice}</span></p>
-          <Button size='sm'>Checkout</Button>
+          <Button onClick={() => alert('Transactions are unavailable for now.')} size='sm'>Checkout</Button>
         </section>
       </section>
     </div>
   )
 }
+/*
+to be implemented (edit item button)
+<Button 
+                    onClick={() => console.log('edit')} 
+                    size='sm' 
+                    variant='outline'
+                  >
+                    Edit
+                  </Button>
+
+*/

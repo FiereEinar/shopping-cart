@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { v4 as uuid } from 'uuid'
 
 const BASE_URL = 'https://fakestoreapi.com'
 
@@ -7,6 +8,8 @@ class CartItem {
     this.item = item
     this.size = size
     this.quantity = quantity
+    this.selected = false
+    this.id = uuid()
   }
 }
 
@@ -48,7 +51,7 @@ const storeData = {
   },
   
   removeToCart: function(id) {
-    storeData.cart = storeData.cart.filter((x) => x.item.id === id)
+    storeData.cart = storeData.cart.filter((x) => x.id === id)
   },
   
   getCartItems: function() {
