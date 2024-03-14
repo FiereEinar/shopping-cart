@@ -41,7 +41,7 @@ export default function ComboBox({ categories, categoryValue }) {
                 key={category}
                 value={category}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? '' : currentValue);
+                  setValue(currentValue);
                   setOpen(false);
                   navigate(category);
                 }}

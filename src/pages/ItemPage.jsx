@@ -43,7 +43,7 @@ export default function ItemPage() {
           <section
             id="selectedItem"
             className="flex border rounded-2xl overflow-hidden p-3
-          gap-2 bg-white"
+            gap-2 bg-white animate-[subtleShow_0.2s_ease]"
           >
             <img
               src={item.image}

@@ -27,7 +27,7 @@ export default function AddToCartDialog({ item, openToggler }) {
       className="absolute w-screen h-full flex justify-center 
       pt-20 backdrop-blur-sm"
     >
-      <form className="bg-gray-100 w-80 md:w-fit h-fit p-2 md:p-5 rounded shadow-2xl flex flex-col gap-2 md:gap-5 border">
+      <form className="bg-gray-100 animate-[subtleShow_0.2s_ease] w-80 md:w-fit h-fit p-2 md:p-5 rounded shadow-2xl flex flex-col gap-2 md:gap-5 border">
         <div className="bg-white flex gap-2 md:gap-5 border rounded p-2">
           <img
             className="w-full max-w-48 md:max-w-60 h-[11rem] md:h-60"

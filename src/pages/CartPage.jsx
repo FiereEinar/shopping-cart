@@ -58,7 +58,7 @@ export default function CartPage() {
           cartItems.map((cart) => (
             <div
               key={cart.id}
-              className="border p-2 bg-white flex rounded overflow-hidden gap-2"
+              className="animate-[subtleShow_0.2s_ease] border p-2 bg-white flex rounded overflow-hidden gap-2"
             >
               <img
                 src={cart.item.image}

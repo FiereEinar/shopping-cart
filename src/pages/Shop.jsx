@@ -3,41 +3,8 @@ import ComboBox from '../components/ComboBox.jsx';
 import NavBar from '../components/NavBar.jsx';
 import DefaultPage from './DefaultPage.jsx';
 import LoadingPage from '../pages/LoadingPage.jsx';
-import storeData from '../api/api.js';
-import { useState, useEffect } from 'react';
-
-export const loader = async () => {
-  const shopItems = await storeData.getShopItems();
-  const shopCategories = await storeData.getShopCategories();
-
-  return { shopItems, shopCategories };
-};
-
-export const useFetchData = () => {
-  const [shoppingItems, setShoppingItems] = useState(null);
-  const [shoppingCategories, setShoppingCategories] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const shopItems = await storeData.getShopItems();
-        const shopCategories = await storeData.getShopCategories();
-
-        setShoppingItems(shopItems);
-        setShoppingCategories(shopCategories);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  return [shoppingItems, shoppingCategories, isLoading, error];
-};
+import { useFetchData } from '../hooks/useFetchData.jsx';
+import { Link } from 'react-router-dom';
 
 export default function Shop() {
   const [shoppingItems, shoppingCategories, isLoading, error] = useFetchData();
@@ -57,11 +24,22 @@ export default function Shop() {
       ) : (
         <div className="flex flex-col gap-2 p-2 bg-gray-100">
           <NavBar shoppingItems={shoppingItems} />
-          <div className="w-screen flex">
+          <div className="w-screen flex items-center gap-5">
             <ComboBox
               categories={shoppingCategories}
               categoryValue={category}
             />
+            {category !== undefined ? (
+              <div>
+                <Link to="/shop">
+                  <span className="hover:text-blue-300 transition-all">
+                    Home
+                  </span>
+                </Link>
+                {' > '}
+                {category}
+              </div>
+            ) : null}
           </div>
           {category === undefined ? (
             <DefaultPage shopItems={shoppingItems} />

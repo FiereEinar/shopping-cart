@@ -1,10 +1,11 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MainPage from '../pages/MainPage.jsx'
-import Shop, { loader as shopLoader } from '../pages/Shop.jsx'
-import ErrorPage from '../pages/ErrorPage.jsx'
-import CategoryPage from '../pages/CategoryPage.jsx'
-import ItemPage from '../pages/ItemPage.jsx'
-import CartPage from '../pages/CartPage.jsx'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { loader as shopLoader } from '../hooks/useFetchData';
+import MainPage from '../pages/MainPage.jsx';
+import Shop from '../pages/Shop.jsx';
+import ErrorPage from '../pages/ErrorPage.jsx';
+import CategoryPage from '../pages/CategoryPage.jsx';
+import ItemPage from '../pages/ItemPage.jsx';
+import CartPage from '../pages/CartPage.jsx';
 
 export default function Route() {
   const route = createBrowserRouter([
@@ -32,11 +33,11 @@ export default function Route() {
       errorElement: <ErrorPage />,
     },
     {
-      path : '/cart',
+      path: '/cart',
       element: <CartPage />,
       errorElement: <ErrorPage />,
     },
-  ])
-  
-  return <RouterProvider router={route}/>
+  ]);
+
+  return <RouterProvider router={route} />;
 }
