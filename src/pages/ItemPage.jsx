@@ -6,10 +6,12 @@ import ProductSection from '../components/ProductSection.jsx';
 import CategorySection from '../components/CategorySection.jsx';
 import AddToCartDialog from '../components/AddToCartDialog.jsx';
 import { useState, useEffect } from 'react';
+import UnavailableDialog from '@/components/UnavailableDialog.jsx';
 
 export default function ItemPage() {
   const navigate = useNavigate();
   const [cartOpen, setCartOpen] = useState(false);
+  const [unavailableDialog, setUnavailableDialog] = useState(false);
 
   const { itemId } = useParams();
   const { shopItems } = useLoaderData();
@@ -38,6 +40,12 @@ export default function ItemPage() {
         </Button>
       </div>
       {cartOpen && <AddToCartDialog item={item} openToggler={toggleCartOpen} />}
+      {unavailableDialog && (
+        <UnavailableDialog
+          onClose={() => setUnavailableDialog((prev) => !prev)}
+          message="Transactions are unavailable for now"
+        />
+      )}
       {item ? (
         <>
           <section
@@ -66,7 +74,7 @@ export default function ItemPage() {
                   Add to Cart
                 </Button>
                 <Button
-                  onClick={() => alert('Transactions are unavailable for now')}
+                  onClick={() => setUnavailableDialog((prev) => !prev)}
                   size="sm"
                 >
                   Buy Now

@@ -2,10 +2,12 @@ import storeData from '../api/api.js';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button.jsx';
 import { useState } from 'react';
+import UnavailableDialog from '@/components/UnavailableDialog.jsx';
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState(storeData.getCartItems());
   const [selectAll, setSelectAll] = useState(false);
+  const [unavailableDialog, setUnavailableDialog] = useState(false);
 
   const totalPrice = cartItems.reduce((total, cart) => {
     if (selectAll || cart.selected) {
@@ -40,7 +42,13 @@ export default function CartPage() {
   };
 
   return (
-    <div className="border flex flex-col gap-2 p-2 min-h-screen bg-gray-100">
+    <div className="relative border flex flex-col gap-2 p-2 min-h-screen bg-gray-100">
+      {unavailableDialog && (
+        <UnavailableDialog
+          onClose={() => setUnavailableDialog((prev) => !prev)}
+          message="Transactions are unavailable for now"
+        />
+      )}
       <div className="bg-white rounded border p-2">
         <Link to="/shop">{'<'} Go back</Link>
       </div>
@@ -101,7 +109,7 @@ export default function CartPage() {
             Total: <span className="text-orange-400">${totalPrice}</span>
           </p>
           <Button
-            onClick={() => alert('Transactions are unavailable for now.')}
+            onClick={() => setUnavailableDialog((prev) => !prev)}
             size="sm"
           >
             Checkout

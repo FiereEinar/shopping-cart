@@ -13,7 +13,7 @@ export default function NavBar({ shoppingItems }) {
       className="flex justify-between items-center p-2 flex-wrap gap-2 bg-white rounded px-5"
     >
       <Link className="" to="/shop">
-        <span className="text-4xl">Logo</span>
+        <span className="text-4xl">Shopipi</span>
       </Link>
       <div className="flex-1 flex justify-end items-center w-full">
         <SearchBar items={shoppingItems} />

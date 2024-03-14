@@ -47,7 +47,6 @@ const storeData = {
   addToCart: function (item, size, quantity) {
     const cartItem = new CartItem(item, size, quantity)
     storeData.cart.push(cartItem)
-    console.log(storeData.cart)
   },
 
   removeToCart: function (id) {
