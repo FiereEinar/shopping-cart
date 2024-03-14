@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid'
 const BASE_URL = 'https://fakestoreapi.com'
 
 class CartItem {
-  constructor(item, size, quantity){
+  constructor(item, size, quantity) {
     this.item = item
     this.size = size
     this.quantity = quantity
@@ -18,7 +18,7 @@ const storeData = {
   shopCategories: null,
   cart: [],
 
-  getShopItems: function() {
+  getShopItems: function () {
     const fetchData = async () => {
       if (storeData.shopItems === null) {
         const res = await axios.get(`${BASE_URL}/products`);
@@ -31,7 +31,7 @@ const storeData = {
     return fetchData()
   },
 
-  getShopCategories: function() {
+  getShopCategories: function () {
     const fetchData = async () => {
       if (storeData.shopCategories === null) {
         const res = await axios.get(`${BASE_URL}/products/categories`);
@@ -43,18 +43,18 @@ const storeData = {
     }
     return fetchData()
   },
-  
-  addToCart: function(item, size, quantity) {
+
+  addToCart: function (item, size, quantity) {
     const cartItem = new CartItem(item, size, quantity)
     storeData.cart.push(cartItem)
     console.log(storeData.cart)
   },
-  
-  removeToCart: function(id) {
-    storeData.cart = storeData.cart.filter((x) => x.id === id)
+
+  removeToCart: function (id) {
+    storeData.cart = storeData.cart.filter((x) => x.id !== id)
   },
-  
-  getCartItems: function() {
+
+  getCartItems: function () {
     return storeData.cart
   },
 };
