@@ -8,7 +8,10 @@ export default function NavBar({ shoppingItems }) {
   const navigate = useNavigate();
 
   return (
-    <nav className="flex flex-col md:flex-row justify-between items-center p-2 flex-wrap gap-2 bg-white rounded px-5">
+    <nav
+      id="nav"
+      className="flex flex-col md:flex-row justify-between items-center p-2 flex-wrap gap-2 bg-white rounded px-5"
+    >
       <Link className="" to="/shop">
         <span className="text-4xl">Shopipi</span>
       </Link>
