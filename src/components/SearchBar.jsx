@@ -23,8 +23,8 @@ export default function SearchBar({ items }) {
   };
 
   return (
-    <div className="relative w-fit rounded">
-      <div className="h-8 rounded relative border w-fit flex items-center justify-between overflow-hidden">
+    <div className="relative w-full rounded flex justify-end">
+      <div className="h-8 rounded relative border w-full md:w-fit flex items-center justify-between overflow-hidden">
         <svg
           className="absolute left-2 h-5 w-5"
           xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ export default function SearchBar({ items }) {
       </div>
       {results.length !== 0 && (
         <div
-          className="absolute max-h-80 bg-white overflow-auto rounded border shadow-2xl 
+          className="absolute top-[2rem] max-h-80 bg-white overflow-auto rounded border shadow-2xl 
         p-1 z-10"
         >
           {results.map((item) => (
