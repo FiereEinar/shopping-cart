@@ -1,7 +1,7 @@
 import storeData from '../api/api.js';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button.jsx';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import UnavailableDialog from '@/components/UnavailableDialog.jsx';
 
 export default function CartPage() {
@@ -9,12 +9,14 @@ export default function CartPage() {
   const [selectAll, setSelectAll] = useState(false);
   const [unavailableDialog, setUnavailableDialog] = useState(false);
 
-  const totalPrice = cartItems.reduce((total, cart) => {
-    if (selectAll || cart.selected) {
-      return total + cart.quantity * cart.item.price;
-    }
-    return total;
-  }, 0);
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((total, cart) => {
+      if (selectAll || cart.selected) {
+        return total + cart.quantity * cart.item.price;
+      }
+      return total;
+    }, 0);
+  }, [cartItems, selectAll]);
 
   const handleCheckoutChange = (id) => {
     setCartItems((prevCartItems) =>
