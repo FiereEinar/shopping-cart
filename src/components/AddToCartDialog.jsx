@@ -3,10 +3,13 @@ import { Button } from '../components/ui/button.jsx';
 import { capitalize } from '../lib/utils.js';
 import storeData from '../api/api.js';
 import { useState } from 'react';
+import UnavailableDialog from './UnavailableDialog.jsx';
 
 export default function AddToCartDialog({ item, openToggler }) {
-  const sizes = ['small', 'medium', 'large'];
   const [quantity, setQuantity] = useState(1);
+  const [formError, setFormError] = useState(false);
+
+  const sizes = ['small', 'medium', 'large'];
   const totalPrice = item.price * quantity;
 
   const addToCartHandler = (e) => {
@@ -14,7 +17,7 @@ export default function AddToCartDialog({ item, openToggler }) {
     const size = document.querySelector('input[name="size"]:checked');
 
     if (!size || quantity <= 0) {
-      alert('Please make sure to fill up the form');
+      setFormError((prev) => !prev);
       return;
     }
 
@@ -27,6 +30,12 @@ export default function AddToCartDialog({ item, openToggler }) {
       className="absolute w-screen h-full flex justify-center 
       pt-20 backdrop-blur-sm"
     >
+      {formError && (
+        <UnavailableDialog
+          onClose={() => setFormError((prev) => !prev)}
+          message="Please make sure to select a size"
+        />
+      )}
       <form className="bg-gray-100 animate-[subtleShow_0.2s_ease] w-80 md:w-fit h-fit p-2 md:p-5 rounded shadow-2xl flex flex-col gap-2 md:gap-5 border">
         <div className="bg-white flex gap-2 md:gap-5 border rounded p-2">
           <img

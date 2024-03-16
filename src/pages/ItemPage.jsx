@@ -9,14 +9,15 @@ import { useState, useEffect } from 'react';
 import UnavailableDialog from '@/components/UnavailableDialog.jsx';
 
 export default function ItemPage() {
-  const navigate = useNavigate();
   const [cartOpen, setCartOpen] = useState(false);
   const [unavailableDialog, setUnavailableDialog] = useState(false);
 
   const { itemId } = useParams();
   const { shopItems } = useLoaderData();
 
+  const navigate = useNavigate();
   const item = shopItems.find((x) => x.id === +itemId);
+
   const relatedItems = shopItems.filter(
     (x) => x.category === item.category && x.id !== +itemId
   );
@@ -50,7 +51,7 @@ export default function ItemPage() {
         <>
           <section
             id="selectedItem"
-            className="flex border rounded-2xl overflow-hidden p-3
+            className="flex border rounded-md overflow-hidden p-3
             gap-2 bg-white animate-[subtleShow_0.2s_ease]"
           >
             <img

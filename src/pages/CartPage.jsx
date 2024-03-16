@@ -103,7 +103,7 @@ export default function CartPage() {
         )}
         <section
           className="border bg-white flex justify-end items-center gap-3
-        p-2 py-5 rounded"
+          p-2 py-5 rounded sticky bottom-0"
         >
           <p>
             Total: <span className="text-orange-400">${totalPrice}</span>

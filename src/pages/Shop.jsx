@@ -30,16 +30,17 @@ export default function Shop() {
               categories={shoppingCategories}
               categoryValue={category}
             />
-            {category !== undefined ? (
-              <Button
-                onClick={() => navigate('/shop')}
-                size="sm"
-                variant="link"
-              >
-                Home
-              </Button>
-            ) : null}
           </div>
+          {category !== undefined ? (
+            <Button
+              className="w-fit"
+              onClick={() => navigate('/shop')}
+              size="sm"
+              variant="outline"
+            >
+              Home
+            </Button>
+          ) : null}
           {category === undefined ? (
             <DefaultPage shopItems={shoppingItems} />
           ) : (

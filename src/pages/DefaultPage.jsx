@@ -1,27 +1,11 @@
 import ItemCard from '../components/ItemCard.jsx';
 import ProductSection from '../components/ProductSection.jsx';
 import CategorySection from '../components/CategorySection.jsx';
-import { useState, useEffect } from 'react';
 
 export default function DefaultPage({ shopItems }) {
-  const [recommendedItems, setRecommendedItems] = useState([]);
-  const bestSelling = shopItems
-    .sort((a, b) => b.rating.count - a.rating.count)
-    .slice(0, 6);
-
-  useEffect(() => {
-    const items = [];
-    const taken = [];
-
-    while (items.length !== 6) {
-      const index = Math.floor(Math.random() * shopItems.length);
-      if (!taken.includes(index)) {
-        items.push(shopItems[index]);
-        taken.push(index);
-      }
-    }
-    setRecommendedItems([...items]);
-  }, [shopItems]);
+  const sortedItems = shopItems.sort((a, b) => b.rating.count - a.rating.count);
+  const bestSelling = sortedItems.slice(0, 6);
+  const recommendedItems = sortedItems.slice(6, sortedItems.length);
 
   return (
     <section className="flex flex-col gap-2">
