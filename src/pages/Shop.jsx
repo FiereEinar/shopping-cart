@@ -25,7 +25,7 @@ export default function Shop() {
       ) : (
         <div className="flex flex-col gap-2 p-2 bg-gray-100">
           <NavBar shoppingItems={shoppingItems} />
-          <div className="w-screen flex items-center gap-2">
+          <div className="w-full flex items-center gap-2">
             <ComboBox
               categories={shoppingCategories}
               categoryValue={category}

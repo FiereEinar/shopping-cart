@@ -1,7 +1,21 @@
-export default function RadioElement({ id, name, value, label }) {
+export default function RadioElement({
+  id,
+  name,
+  value,
+  label,
+  checked,
+  onChange,
+}) {
   return (
     <div className="flex gap-1 relative">
-      <input className="" id={id} type="radio" name={name} value={value} />
+      <input
+        checked={checked}
+        onChange={onChange}
+        id={id}
+        type="radio"
+        name={name}
+        value={value}
+      />
       <label htmlFor={id}>{label}</label>
     </div>
   );

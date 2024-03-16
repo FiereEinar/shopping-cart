@@ -8,26 +8,28 @@ import UnavailableDialog from './UnavailableDialog.jsx';
 export default function AddToCartDialog({ item, openToggler }) {
   const [quantity, setQuantity] = useState(1);
   const [formError, setFormError] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   const sizes = ['small', 'medium', 'large'];
   const totalPrice = item.price * quantity;
 
   const addToCartHandler = (e) => {
     e.preventDefault();
-    const size = document.querySelector('input[name="size"]:checked');
 
-    if (!size || quantity <= 0) {
+    if (!selectedSize || quantity <= 0) {
       setFormError((prev) => !prev);
       return;
     }
 
-    storeData.addToCart(item, size.value, quantity);
+    storeData.addToCart(item, selectedSize, quantity);
     openToggler();
   };
 
+  window.scrollTo(0, 0);
+
   return (
     <div
-      className="absolute w-screen h-full flex justify-center 
+      className="absolute w-full h-full flex justify-center 
       pt-20 backdrop-blur-sm"
     >
       {formError && (
@@ -57,6 +59,8 @@ export default function AddToCartDialog({ item, openToggler }) {
                 name="size"
                 value={size}
                 label={capitalize(size)}
+                checked={selectedSize === size}
+                onChange={() => setSelectedSize(size)}
               />
             ))}
           </div>
