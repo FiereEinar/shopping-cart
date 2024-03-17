@@ -1,8 +1,33 @@
-# React + Vite
+# Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Demo
 
-Currently, two official plugins are available:
+[Live Demo](https://shopping-cart-ten-cyan.vercel.app/shop)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## About
+
+A project from The Odin Project React Course where it practices the use of `react-router-dom` and data fetching in react as well as explore other useful react hooks. This project also practices the development of Single Page Application (SPA) for faster and better user experience.
+
+## Built With
+
+- React
+- React Router
+- Tailwind
+- Vite
+- Shadcn
+
+## Features
+
+- Add to cart
+- Product Search
+- Dynamic link
+- Categories
+
+## Getting Started
+
+```bash
+git clone https://github.com/FiereEinar/shopping-cart.git
+cd shopping-cart
+npm install
+npm run dev
+```
