@@ -6,7 +6,7 @@ export default function ItemCard({ id, imgURL, title, price, sold, rating }) {
   return (
     <button
       className="w-full border rounded-md overflow-hidden flex flex-col
-    hover:shadow hover:border-zinc-500 transition-all p-1"
+    hover:shadow-md hover:border-zinc-500 transition-all p-1"
       onClick={() => {
         navigate(`/item/${id}`);
       }}
